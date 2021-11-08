@@ -17,6 +17,6 @@ func NewConfigStateUpdater(repository common.Repository) ConfigStateUpdater {
 }
 
 func (u ConfigStateUpdater) UpdateConfig(ctx context.Context, name string, strategyType common.StrategyType, value interface{}) error {
-	filter := bson.M{"name": name, "strategy_type": strategyType}
+	filter := bson.M{"base_config.name": name, "base_config.strategy_type": strategyType}
 	return u.repository.Update(ctx, filter, value)
 }
